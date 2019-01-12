@@ -50,6 +50,11 @@ public class PlayerController : NetworkBehaviour {
 			return;
 		}
 
+		if (Input.GetMouseButtonDown(0))
+		{
+			m_pShoot.Shoot();
+		}
+
 		Vector3 inputDirection = GetInput();
 		if (inputDirection.sqrMagnitude > 0.25f)
 		{

@@ -6,7 +6,7 @@ using System.Linq;
 
 [RequireComponent(typeof(Rigidbody))]
 [RequireComponent(typeof(Collider))]
-public class Bullet : MonoBehaviour 
+public class Bullet : NetworkBehaviour 
 {
 	Rigidbody m_rigidbody;
 
@@ -48,20 +48,25 @@ public class Bullet : MonoBehaviour
 		m_rigidbody.velocity = Vector3.zero;
 		m_rigidbody.Sleep ();
 
-		foreach (MeshRenderer m in GetComponentsInChildren<MeshRenderer> ()) {
-			m.enabled = false;
-		}
-
-		foreach (ParticleSystem ps in m_allParticles) {
+		foreach (ParticleSystem ps in m_allParticles) 
+		{
 			ps.Stop ();
 		}
 
-		if (m_explosionFX != null) {
+		if (m_explosionFX != null) 
+		{
 			m_explosionFX.transform.parent = null;
 			m_explosionFX.Play ();
 		}
 
-		Destroy (gameObject);
+		if (isServer)
+		{
+			Destroy (gameObject);
+			foreach (MeshRenderer m in GetComponentsInChildren<MeshRenderer> ()) 
+			{
+				m.enabled = false;
+			}
+		}
 	}
 
 	// Update is called once per frame

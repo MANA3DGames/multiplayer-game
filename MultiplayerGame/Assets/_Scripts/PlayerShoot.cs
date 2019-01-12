@@ -27,10 +27,7 @@ public class PlayerShoot : NetworkBehaviour {
 	// Update is called once per frame
 	void Update () 
 	{
-		if (Input.GetMouseButtonDown(0))
-		{
-			Shoot();
-		}
+
 	}
 
 	public void Shoot()
@@ -40,15 +37,7 @@ public class PlayerShoot : NetworkBehaviour {
 			return;
 		}
 
-		Bullet bullet = null;
-		bullet = m_bulletPrefab.GetComponent<Bullet>();
-
-		Rigidbody rbody = Instantiate (m_bulletPrefab, m_bulletSpawn.position, m_bulletSpawn.rotation) as Rigidbody;
-
-		if (rbody !=null)
-		{
-			rbody.velocity = bullet.m_speed * m_bulletSpawn.transform.forward;
-		}
+		CmdShoot ();
 
 		m_shotsLeft --;
 
@@ -57,9 +46,23 @@ public class PlayerShoot : NetworkBehaviour {
 
 			StartCoroutine("Reload");
 		}
-
-
 	}
+
+	[Command]
+	void CmdShoot ()
+	{
+		Bullet bullet = null;
+		bullet = m_bulletPrefab.GetComponent<Bullet> ();
+		Rigidbody rbody = Instantiate (m_bulletPrefab, m_bulletSpawn.position, m_bulletSpawn.rotation) as Rigidbody;
+		if (rbody != null) {
+			rbody.velocity = bullet.m_speed * m_bulletSpawn.transform.forward;
+			NetworkServer.Spawn(rbody.gameObject);
+		}
+	}
+
+
+
+
 
 	IEnumerator Reload()
 	{
