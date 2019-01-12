@@ -59,6 +59,9 @@ GameObject:
   - component: {fileID: 114597262024962598}
   - component: {fileID: 114394684700387502}
   - component: {fileID: 114702899469644872}
+  - component: {fileID: 114678741314658580}
+  - component: {fileID: 114748486328101516}
+  - component: {fileID: 114295472365864620}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -274,7 +277,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1438852744750560}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ca4718f7149049549978d5a1ed15ae52, type: 3}
+  m_Script: {fileID: 11500000, guid: 52f9702905b0242eca5c6633cb7d28ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_chassis: {fileID: 4621151047771694}
@@ -290,9 +293,28 @@ MonoBehaviour:
   m_GameObject: {fileID: 1438852744750560}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bfaed8ccda0de1041aecf9a334b94952, type: 3}
+  m_Script: {fileID: 11500000, guid: 97770bf393e4741d2811cd94d762c6df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114295472365864620
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1438852744750560}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1267208747, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Target: {fileID: 4621151047771694}
+  m_ChildIndex: 1
+  m_SendInterval: 0.1
+  m_SyncRotationAxis: 2
+  m_RotationSyncCompression: 0
+  m_MovementThreshold: 0.001
+  m_InterpolateRotation: 0.5
+  m_InterpolateMovement: 0.5
 --- !u!114 &114387337440377210
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -301,7 +323,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1438852744750560}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ab52743f78ccf3342bd1af7e2828eb69, type: 3}
+  m_Script: {fileID: 11500000, guid: d8dbf82a9ae4d4c7d939d4daad97ed2b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &114394684700387502
@@ -312,7 +334,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1438852744750560}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eb5af8ebad97c434bb21a1e52738917e, type: 3}
+  m_Script: {fileID: 11500000, guid: 8f4c9515767ec49519c02c67c2671478, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &114597262024962598
@@ -323,9 +345,30 @@ MonoBehaviour:
   m_GameObject: {fileID: 1438852744750560}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5801b562847b33f408242a772b93cb3c, type: 3}
+  m_Script: {fileID: 11500000, guid: 0dd84aaf8f1ef406ca019291d3d008d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114678741314658580
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1438852744750560}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1768714887, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_TransformSyncMode: 3
+  m_SendInterval: 0.0625
+  m_SyncRotationAxis: 0
+  m_RotationSyncCompression: 0
+  m_SyncSpin: 0
+  m_MovementTheshold: 0.001
+  m_VelocityThreshold: 0.0001
+  m_SnapThreshold: 5
+  m_InterpolateRotation: 1
+  m_InterpolateMovement: 1
 --- !u!114 &114702899469644872
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -358,6 +401,25 @@ MonoBehaviour:
     i15: 168
   m_ServerOnly: 0
   m_LocalPlayerAuthority: 1
+--- !u!114 &114748486328101516
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1438852744750560}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1267208747, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Target: {fileID: 4382506239718818}
+  m_ChildIndex: 0
+  m_SendInterval: 0.0625
+  m_SyncRotationAxis: 2
+  m_RotationSyncCompression: 0
+  m_MovementThreshold: 0.001
+  m_InterpolateRotation: 0.5
+  m_InterpolateMovement: 0.5
 --- !u!136 &136867162754229640
 CapsuleCollider:
   m_ObjectHideFlags: 1
