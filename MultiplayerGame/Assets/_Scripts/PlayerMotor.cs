@@ -49,18 +49,4 @@ public class PlayerMotor : NetworkBehaviour {
 	}
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 }

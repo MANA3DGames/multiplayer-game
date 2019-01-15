@@ -22,8 +22,12 @@ public class Bullet : NetworkBehaviour
 
 	public List<string> m_bounceTags;
 
+	public List<string> m_collisionTags;
+
+
 	public int m_bounces = 2;
 
+	public float m_damage = 1f;
 
 	// Use this for initialization
 	void Start () 
@@ -86,6 +90,8 @@ public class Bullet : NetworkBehaviour
 
 	void OnCollisionEnter(Collision collision)
 	{
+		CheckCollisions(collision);
+
 		if (m_bounceTags.Contains(collision.gameObject.tag))
 		{
 			if (m_bounces <= 0)
@@ -95,9 +101,21 @@ public class Bullet : NetworkBehaviour
 
 			m_bounces --;
 		}
-
 	}
 
+	void CheckCollisions(Collision collision)
+	{
+		if (m_collisionTags.Contains(collision.collider.tag))
+		{
+			Explode();
+			PlayerHealth playerHealth = collision.gameObject.GetComponentInParent<PlayerHealth>();
+
+			if (playerHealth !=null)
+			{
+				playerHealth.Damage(m_damage);
+			}
+		}
+	}
 
 
 

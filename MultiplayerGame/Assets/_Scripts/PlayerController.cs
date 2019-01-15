@@ -14,8 +14,6 @@ public class PlayerController : NetworkBehaviour {
 	PlayerShoot m_pShoot;
 
 
-
-
 	void Start () 
 	{
 		m_pHealth = GetComponent<PlayerHealth>();

@@ -399,7 +399,11 @@ MonoBehaviour:
   m_explosionFX: {fileID: 198595895931106272}
   m_bounceTags:
   - Bounce
+  - Player
+  m_collisionTags:
+  - Player
   m_bounces: 2
+  m_damage: 1
 --- !u!198 &198100513486318204
 ParticleSystem:
   m_ObjectHideFlags: 1

@@ -24,7 +24,6 @@ public class PlayerSetup : NetworkBehaviour {
 			m_playerNameText.enabled = false;
 		}
 	}
-		
 
 
 	public override void OnStartLocalPlayer()
@@ -41,9 +40,7 @@ public class PlayerSetup : NetworkBehaviour {
 		{
 			m_playerNameText.enabled = true;
 			m_playerNameText.text = m_basename + m_playerNum.ToString();
-
 		}
-
 
 	}
 
