@@ -5,7 +5,7 @@ using System.Collections;
 [RequireComponent(typeof(Rigidbody))]
 public class PlayerMotor : NetworkBehaviour {
 
-	Rigidbody m_rigidbody;
+	public Rigidbody m_rigidbody;
 
 	public Transform m_chassis;
 
