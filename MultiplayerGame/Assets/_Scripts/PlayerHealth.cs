@@ -5,7 +5,9 @@ using System.Collections;
 
 public class PlayerHealth : NetworkBehaviour {
 
+	[SyncVar(hook = "UpdateHealthBar")]
 	float m_currentHealth;
+
 	public float m_maxHealth = 3;
 
 	public GameObject m_deathPrefab;
@@ -38,8 +40,14 @@ public class PlayerHealth : NetworkBehaviour {
 
 	public void Damage (float damage)
 	{
+		if (!isServer)
+		{
+			return;
+		}
+
 		m_currentHealth -= damage;
 		UpdateHealthBar(m_currentHealth);
+
 		if (m_currentHealth <= 0 && !m_isDead)
 		{
 			m_isDead = true;
