@@ -508,6 +508,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52f9702905b0242eca5c6633cb7d28ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_rigidbody: {fileID: 0}
   m_chassis: {fileID: 4621151047771694}
   m_turret: {fileID: 4382506239718818}
   m_moveSpeed: 100
@@ -524,6 +525,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97770bf393e4741d2811cd94d762c6df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_spawnFx: {fileID: 118206, guid: 49cea2316ec6a41589509c0e782d9213, type: 2}
 --- !u!114 &114267799499872674
 MonoBehaviour:
   m_ObjectHideFlags: 1

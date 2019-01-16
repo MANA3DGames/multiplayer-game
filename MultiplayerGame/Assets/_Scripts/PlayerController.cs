@@ -13,6 +13,10 @@ public class PlayerController : NetworkBehaviour {
 	PlayerSetup m_pSetup;
 	PlayerShoot m_pShoot;
 
+	Vector3 m_originalPosition;
+	NetworkStartPosition[] m_spawnPoints;
+
+	public GameObject m_spawnFx;
 
 	void Start () 
 	{
@@ -21,6 +25,17 @@ public class PlayerController : NetworkBehaviour {
 		m_pSetup = GetComponent<PlayerSetup>();
 		m_pShoot = GetComponent<PlayerShoot>();
 	}
+
+	public override void OnStartLocalPlayer()
+	{
+
+		m_spawnPoints = GameObject.FindObjectsOfType<NetworkStartPosition>();
+
+		m_originalPosition = transform.position;
+		Debug.Log (" original spawn position = " + transform.position.ToString());
+
+	}
+
 
 	Vector3 GetInput()
 	{
@@ -72,10 +87,31 @@ public class PlayerController : NetworkBehaviour {
 
 	IEnumerator RespawnRoutine()
 	{
-		transform.position = Vector3.zero;
+		transform.position = GetRandomSpawnPosition();
 		m_pMotor.m_rigidbody.velocity = Vector3.zero;
+
 		yield return new WaitForSeconds(3f);
 		m_pHealth.Reset();
+
+		if (m_spawnFx != null)
+		{
+			GameObject spawnFx = Instantiate(m_spawnFx, transform.position + Vector3.up * 0.5f, Quaternion.identity) as GameObject;
+			Destroy(spawnFx,3f);
+
+		}
+	}
+
+	Vector3 GetRandomSpawnPosition()
+	{
+		if (m_spawnPoints !=null)
+		{
+			if (m_spawnPoints.Length > 0)
+			{
+				NetworkStartPosition startPos = m_spawnPoints[Random.Range(0,m_spawnPoints.Length)];
+				return startPos.transform.position;
+			}
+		}
+		return m_originalPosition;
 	}
 
 }
