@@ -18,12 +18,16 @@ public class PlayerController : NetworkBehaviour {
 
 	public GameObject m_spawnFx;
 
+
 	void Start () 
 	{
 		m_pHealth = GetComponent<PlayerHealth>();
 		m_pMotor = GetComponent<PlayerMotor>();
 		m_pSetup = GetComponent<PlayerSetup>();
 		m_pShoot = GetComponent<PlayerShoot>();
+
+
+
 	}
 
 	public override void OnStartLocalPlayer()
@@ -93,25 +97,26 @@ public class PlayerController : NetworkBehaviour {
 		yield return new WaitForSeconds(3f);
 		m_pHealth.Reset();
 
-		if (m_spawnFx != null)
+		if (m_spawnFx)
 		{
 			GameObject spawnFx = Instantiate(m_spawnFx, transform.position + Vector3.up * 0.5f, Quaternion.identity) as GameObject;
-			Destroy(spawnFx,3f);
+			Destroy(spawnFx, 3f);
 
 		}
 	}
 
 	Vector3 GetRandomSpawnPosition()
 	{
-		if (m_spawnPoints !=null)
+		if (m_spawnPoints != null)
 		{
 			if (m_spawnPoints.Length > 0)
 			{
-				NetworkStartPosition startPos = m_spawnPoints[Random.Range(0,m_spawnPoints.Length)];
-				return startPos.transform.position;
+				NetworkStartPosition startPoint = m_spawnPoints[Random.Range(0, m_spawnPoints.Length)];
+				return startPoint.transform.position;
 			}
 		}
 		return m_originalPosition;
+
 	}
 
 }
