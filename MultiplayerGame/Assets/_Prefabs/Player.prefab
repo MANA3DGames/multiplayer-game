@@ -525,7 +525,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97770bf393e4741d2811cd94d762c6df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_pSetup: {fileID: 0}
   m_spawnFx: {fileID: 118206, guid: 49cea2316ec6a41589509c0e782d9213, type: 2}
+  m_score: 0
 --- !u!114 &114267799499872674
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -593,6 +595,7 @@ MonoBehaviour:
   m_deathPrefab: {fileID: 140182, guid: ead306b39f6b0428fa246bfff7d603ff, type: 2}
   m_isDead: 0
   m_healthBar: {fileID: 224465752962954832}
+  m_lastAttacker: {fileID: 0}
 --- !u!114 &114394684700387502
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -609,6 +612,10 @@ MonoBehaviour:
   m_bulletSpawn: {fileID: 4128218705705144}
   m_shotsPerBurst: 2
   m_reloadTime: 1
+  m_misfireEffect: {fileID: 19800000, guid: 06d7eeb38dffc4879b91f487e4924902, type: 2}
+  m_obstacleMask:
+    serializedVersion: 2
+    m_Bits: 512
 --- !u!114 &114403434135464588
 MonoBehaviour:
   m_ObjectHideFlags: 1

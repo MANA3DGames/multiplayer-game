@@ -10,13 +10,16 @@ public class PlayerController : NetworkBehaviour {
 
 	PlayerHealth m_pHealth;
 	PlayerMotor m_pMotor;
-	PlayerSetup m_pSetup;
+	public PlayerSetup m_pSetup;
 	PlayerShoot m_pShoot;
 
 	Vector3 m_originalPosition;
 	NetworkStartPosition[] m_spawnPoints;
 
 	public GameObject m_spawnFx;
+
+	public int m_score;
+
 
 
 	void Start () 
@@ -25,9 +28,6 @@ public class PlayerController : NetworkBehaviour {
 		m_pMotor = GetComponent<PlayerMotor>();
 		m_pSetup = GetComponent<PlayerSetup>();
 		m_pShoot = GetComponent<PlayerShoot>();
-
-
-
 	}
 
 	public override void OnStartLocalPlayer()
@@ -36,11 +36,8 @@ public class PlayerController : NetworkBehaviour {
 		m_spawnPoints = GameObject.FindObjectsOfType<NetworkStartPosition>();
 
 		m_originalPosition = transform.position;
-		Debug.Log (" original spawn position = " + transform.position.ToString());
-
 	}
-
-
+		
 	Vector3 GetInput()
 	{
 		float h = Input.GetAxis("Horizontal");

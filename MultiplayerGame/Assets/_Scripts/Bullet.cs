@@ -24,10 +24,14 @@ public class Bullet : NetworkBehaviour
 
 	public List<string> m_collisionTags;
 
-
 	public int m_bounces = 2;
 
 	public float m_damage = 1f;
+
+	public PlayerController m_owner;
+
+    public float m_delay = 0.04f;
+
 
 	// Use this for initialization
 	void Start () 
@@ -40,7 +44,13 @@ public class Bullet : NetworkBehaviour
 
 	IEnumerator SelfDestruct()
 	{
-		yield return new WaitForSeconds(m_lifetime);
+        m_collider.enabled = false;
+
+        yield return new WaitForSeconds( m_delay );
+
+        m_collider.enabled = true;
+
+        yield return new WaitForSeconds(m_lifetime);
 
 		Explode ();
 
@@ -112,7 +122,7 @@ public class Bullet : NetworkBehaviour
 
 			if (playerHealth !=null)
 			{
-				playerHealth.Damage(m_damage);
+				playerHealth.Damage(m_damage,m_owner);
 			}
 		}
 	}

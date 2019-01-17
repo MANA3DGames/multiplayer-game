@@ -16,6 +16,10 @@ public class PlayerShoot : NetworkBehaviour {
 
 	public float m_reloadTime = 1f;
 
+    public ParticleSystem m_misfireEffect;
+
+    public LayerMask m_obstacleMask;
+
 
 	// Use this for initialization
 	void Start () 
@@ -37,25 +41,46 @@ public class PlayerShoot : NetworkBehaviour {
 			return;
 		}
 
-		CmdShoot ();
+        RaycastHit hit;
+        Vector3 center = new Vector3( transform.position.x, m_bulletSpawn.position.y, transform.position.z );
 
-		m_shotsLeft --;
+        Vector3 dir = (m_bulletSpawn.position - center).normalized;
 
-		if (m_shotsLeft <= 0)
-		{
+        if ( Physics.SphereCast( center, 0.25f, dir, out hit, 2.6f, m_obstacleMask, QueryTriggerInteraction.Ignore ) )
+        {
+            if ( m_misfireEffect != null )
+            {
+                ParticleSystem effect = Instantiate(m_misfireEffect, hit.point, Quaternion.identity) as ParticleSystem;
+                effect.Stop();
+                effect.Play();
+                Destroy( effect.gameObject, 3.0f );
+            }
 
-			StartCoroutine("Reload");
-		}
+        }
+		else
+        {
+            CmdShoot();
+
+            m_shotsLeft--;
+
+            if (m_shotsLeft <= 0)
+            {
+
+                StartCoroutine("Reload");
+            }
+        }
 	}
 
 	[Command]
 	void CmdShoot ()
 	{
 		Bullet bullet = null;
-		bullet = m_bulletPrefab.GetComponent<Bullet> ();
+		//bullet = m_bulletPrefab.GetComponent<Bullet> ();
 		Rigidbody rbody = Instantiate (m_bulletPrefab, m_bulletSpawn.position, m_bulletSpawn.rotation) as Rigidbody;
+		bullet = rbody.gameObject.GetComponent<Bullet>();
 		if (rbody != null) {
 			rbody.velocity = bullet.m_speed * m_bulletSpawn.transform.forward;
+			bullet.m_owner = GetComponent<PlayerController>();
 			NetworkServer.Spawn(rbody.gameObject);
 		}
 	}
