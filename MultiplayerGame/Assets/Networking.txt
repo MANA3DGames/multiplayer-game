@@ -1,0 +1,55 @@
+
+-----------------------------------------
+When a user hosts a game
+-----------------------------------------
+[NetworkManager]
+OnStartHost
+OnStartServer
+OnServerConnect
+OnStartClient
+OnServerReady
+
+		[NetworkBehaviuor]
+		OnStartClient
+		OnStartLocalPlayer
+
+[NetworkManager]
+OnServerAddPlayer
+OnClientConnect
+
+
+-----------------------------------------
+When a client join a game
+-----------------------------------------
+[NetworkManager]
+OnStartClient
+OnClientConnect
+
+		[NetworkBehaviuor]
+		OnStartClient
+		OnStartClient
+		OnStartClient
+		...
+		OnStartLocalPlayer
+
+
+
+
+
+
+
+
+-----------------------------------------
+when the host disconnects
+-----------------------------------------
+OnStopClient
+OnClientDisconnect
+
+
+
+
+
+
+
+
+
