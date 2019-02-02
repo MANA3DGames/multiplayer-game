@@ -7,7 +7,6 @@ using System.Collections.Generic;
 
 public class GameManager : NetworkBehaviour 
 {
-	
 	public Text m_messageText;
 
 	public int m_minPlayers = 2;
@@ -66,7 +65,9 @@ public class GameManager : NetworkBehaviour
 		StartCoroutine("GameLoopRoutine");
 	}
 
-	IEnumerator GameLoopRoutine()
+
+
+    IEnumerator GameLoopRoutine()
 	{
 		yield return StartCoroutine("EnterLobby");
 		yield return StartCoroutine("PlayGame");
@@ -153,6 +154,7 @@ public class GameManager : NetworkBehaviour
 
 	public void AddPlayer(PlayerSetup pSetup)
 	{
+        Debug.Log( "Add Player" );
 		if (m_playerCount < m_maxPlayers)
 		{
 			m_allPlayers.Add(pSetup.GetComponent<PlayerController>());

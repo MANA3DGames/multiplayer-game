@@ -25,6 +25,7 @@ public class PlayerSetup : NetworkBehaviour {
 
 	public override void OnStartClient ()
 	{
+        Debug.Log( "OnStartClient" );
 		base.OnStartClient ();
 		if (m_playerNameText != null)
 		{
@@ -50,6 +51,7 @@ public class PlayerSetup : NetworkBehaviour {
 
 	public override void OnStartLocalPlayer()
 	{
+        Debug.Log( "OnStartLocalPlayer" );
 		base.OnStartLocalPlayer();
 		CmdSetupPlayer();
 	}
