@@ -12,10 +12,15 @@ namespace MANA3DGames
         private void Update()
         {
             if ( Input.GetKeyDown( KeyCode.Alpha1 ) )
+            {
                 networkManger.StartHost();
+            }
+                
 
             if ( Input.GetKeyDown( KeyCode.Alpha2 ) )
+            {
                 networkManger.StartClient();
+            }
         }
     }
 }

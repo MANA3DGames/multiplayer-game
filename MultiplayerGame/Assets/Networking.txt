@@ -6,12 +6,14 @@ When a user hosts a game
 OnStartHost
 OnStartServer
 OnServerConnect
-OnStartClient
+
+>>OnStartClient
+
 OnServerReady
 
-		[NetworkBehaviuor]
-		OnStartClient
-		OnStartLocalPlayer
+					[NetworkBehaviuor]
+					OnStartClient
+					OnStartLocalPlayer
 
 [NetworkManager]
 OnServerAddPlayer
@@ -22,15 +24,15 @@ OnClientConnect
 When a client join a game
 -----------------------------------------
 [NetworkManager]
-OnStartClient
+>>OnStartClient
 OnClientConnect
 
-		[NetworkBehaviuor]
-		OnStartClient
-		OnStartClient
-		OnStartClient
-		...
-		OnStartLocalPlayer
+					[NetworkBehaviuor]
+					OnStartClient
+					OnStartClient
+					OnStartClient
+					...
+					OnStartLocalPlayer
 
 
 

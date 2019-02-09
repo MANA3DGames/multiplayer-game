@@ -105,7 +105,7 @@ public class GameManager : NetworkBehaviour
 
 		UpdateMessage ("");
 
-		PlayerController winner = null;
+        m_winner = null;
 
 		while (m_gameOver == false)
 		{
@@ -173,11 +173,8 @@ public class GameManager : NetworkBehaviour
 				m_nameLabelText[i].text = playerNames[i];
 			}
 
-			if (playerScores[i] != null)
-			{
-				m_playerScoreText[i].text = playerScores[i].ToString();
-			}
-		}
+            m_playerScoreText[i].text = playerScores[i].ToString();
+        }
 
 	}
 
